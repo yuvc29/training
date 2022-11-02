@@ -1,10 +1,21 @@
 package com.fareye.training.model;
-
-import org.springframework.web.bind.annotation.RestController;
-
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    private long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -29,6 +40,8 @@ public class User {
         this.active = active;
     }
 
+
+    @Column(name = "git_id")
     public String getGit_id() {
         return git_id;
     }
@@ -39,6 +52,7 @@ public class User {
 
     private String git_id;
 
+    @Column(name = "avatar")
     public String getAvatar() {
         return avatar;
     }
@@ -52,6 +66,7 @@ public class User {
     private String role;
     private boolean active;
 
+    @Column(name = "firstName")
     public String getFirstName() {
         return firstName;
     }
@@ -60,6 +75,7 @@ public class User {
         this.firstName = firstName;
     }
 
+    @Column(name = "lastName")
     public String getLastName() {
         return lastName;
     }
@@ -68,6 +84,7 @@ public class User {
         this.lastName = lastName;
     }
 
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -76,6 +93,7 @@ public class User {
         this.email = email;
     }
 
+    @Column(name = "verified")
     public boolean isVerified() {
         return verified;
     }
@@ -84,6 +102,7 @@ public class User {
         this.verified = verified;
     }
 
+    @Column(name = "created")
     public Date getCreated() {
         return created;
     }
@@ -92,6 +111,8 @@ public class User {
         this.created = created;
     }
 
+
+    @Column(name = "modified")
     public Date getModified() {
         return modified;
     }
@@ -99,15 +120,15 @@ public class User {
     public void setModified(Date modified) {
         this.modified = modified;
     }
-
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
 
+    @Column(name = "role")
     public String getRole() {
         return role;
     }
@@ -116,6 +137,7 @@ public class User {
         this.role = role;
     }
 
+    @Column(name = "active")
     public boolean isActive() {
         return active;
     }

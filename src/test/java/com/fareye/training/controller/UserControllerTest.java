@@ -1,67 +1,54 @@
 package com.fareye.training.controller;
 
 import com.fareye.training.model.User;
+import com.fareye.training.repository.UserRepository;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestTemplate;
-import org.mockito.Mock;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.HashMap;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
+//import org.mockito.Mockito.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
+//@RunWith(SpringRunner.class)
+@SpringBootTest
 class UserControllerTest {
 
+    @MockBean
+    UserRepository repository;// = Mockito.mock(UserRepository.class);
+    @Autowired
+    UserController controller = new UserController();
     @Test
     void create() {
-        UserController userController = new UserController();
-        User input  = new User();
-        input.setLastName("Doe");
-        input.setAvatar("https://avatars.githubusercontent.com/u/57936?v=4");
-        input.setEmail("john.doe@gmail.com");
-        input.setFirstName("John");
-        User res = userController.create(input);
-        assertEquals(input.getEmail(), res.getEmail());
+//        User user = new User();
+//        user.setFirstName("John");
+//        user.setLastName("Doe");
+//        user.setEmail("john@gmail.com");
+//        user.setPassword("abcd");
+//        user.setRole("User");
+//        user.setGit_id("example");
+//        Mockito.when(repository.save(user)).thenReturn(user);
+//        User response = controller.create(user);
+//        // assertEquals(response.getStatusCode(), HttpStatus.OK);
+//        assertEquals(response.getEmail(), user.getEmail());
     }
 
+    @Test
+    void get_avatar() {
+    }
 
     @Test
     void getuser() {
-        UserController userController = new UserController();
-        User input = new User();
-        input.setLastName("Doe");
-        input.setEmail("john.doe@gmail.com");
-        input.setFirstName("Jonh");
-        // when(userController.map.get("john.doe@gmail.com")).thenReturn(input);
-        User res = userController.getuser("john.doe@gmail.com");
-        assertEquals(input.getEmail(), res.getEmail());
     }
 
     @Test
     void deleteuser() {
-        UserController userController = new UserController();
-        User input = new User();
-        input.setLastName("Doe");
-        input.setEmail("john.doe@gmail.com");
-        input.setFirstName("Jonh");
-
-        // when(userController.map.remove("john.doe@gmail.com")).thenReturn(input);
-        int res = userController.deleteuser("john.doe@gmail.com");
-        assertEquals(0, res);
-
     }
 
     @Test
     void update() {
-        UserController userController = new UserController();
-        User input = new User();
-        input.setLastName("Doe");
-        input.setAvatar("https://avatars.githubusercontent.com/u/57936?v=4");
-        input.setEmail("john.doe@gmail.com");
-        input.setFirstName("John");
-        // when(userController.map.get("john.doe@gmail.com")).thenReturn(input);
-        User res = userController.update(input);
-        assertEquals(input.getEmail(), res.getEmail());
     }
 }

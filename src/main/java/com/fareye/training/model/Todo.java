@@ -2,53 +2,67 @@ package com.fareye.training.model;
 
 import com.fareye.training.customAnno.DuplicateTitle;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import java.util.Date;
 
-
-@DuplicateTitle(message = "Title already taken")
+@Entity
+@Table(name = "todos")
+// @DuplicateTitle(message = "Title already taken")
 public class Todo {
-    private Date dueDate;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    private long id;
+    private String dueDate;
     private Date createdDate;
     private Date modifiedDate;
     private String body;
 
-    @NotNull
+    // @NotNull
     private String title;
     private String status;
-    private String user; // Use object user
+    private String email; // Use object user
 
-    public Todo(Date dueDate, Date createdDate, Date modifiedDate, String body, String title, String status, String user) {
+    public Todo(String dueDate, Date createdDate, Date modifiedDate, String body, String title, String status, String email) {
         this.dueDate = dueDate;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
         this.body = body;
         this.title = title;
         this.status = status;
-        this.user = user;
+        this.email = email;
     }
 
     public Todo(){
 
     }
-    public String getUser() {
-        return user;
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-
-    public Date getDueDate() {
+    @Column(name = "dueDate")
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
-
+    @Column(name = "createdDate")
     public Date getCreatedDate() {
         return createdDate;
     }
@@ -57,6 +71,7 @@ public class Todo {
         this.createdDate = createdDate;
     }
 
+    @Column(name = "modifiedDate")
     public Date getModifiedDate() {
         return modifiedDate;
     }
@@ -65,6 +80,7 @@ public class Todo {
         this.modifiedDate = modifiedDate;
     }
 
+    @Column(name = "body")
     public String getBody() {
         return body;
     }
@@ -72,7 +88,7 @@ public class Todo {
     public void setBody(String body) {
         this.body = body;
     }
-
+    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -81,7 +97,7 @@ public class Todo {
     public void setTitle(String title) {
         this.title = title;
     }
-
+    @Column(name = "status")
     public String getStatus() {
         return status;
     }
@@ -99,7 +115,7 @@ public class Todo {
                 ", body='" + body + '\'' +
                 ", title='" + title + '\'' +
                 ", status='" + status + '\'' +
-                ", user='" + user + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
